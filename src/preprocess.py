@@ -1,7 +1,6 @@
 # preprocess.py
 # load raw dataset and preprocess it several subsets for further analysis
 
-import numpy as np
 import pandas as pd
 
 rawDataPath, preprocessDataPath = 'data/raw/', 'data/preprocessed/'
