@@ -19,6 +19,20 @@ print(num_col)
 df_attrited = df_attrited[num_col]
 df_remained = df_remained[num_col]
 
+def plot_line_remove_ytick(col:str):
+  ax = sns.kdeplot(x = df.loc[df.Attrition == 0][col], label = "Still Employed", color = "steelblue")
+  ax = sns.kdeplot(x = df.loc[df.Attrition == 1][col], label = "Left Company", color = "red")
+  min_val=min(df[col])
+  max_val=max(df[col])
+  ax.set_title('{} comparison among two groups'.format(col))
+  ax.set_xlabel(col)
+  ax.set_xlim(min_val,max_val)
+  ax.set(yticklabels=[])
+  ax.legend()
+  ax.spines['right'].set_visible(False)
+  ax.spines['top'].set_visible(False)
+  return ax
+
 # two sample t tests for each numerical columns
 # to select those with p value less than 0.05
 p_vals={}
