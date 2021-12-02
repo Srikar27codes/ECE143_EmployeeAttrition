@@ -13,7 +13,7 @@ def distribution_to_attition(df:pd.DataFrame, col:str, save_path:str='plot'):
         df: pd.DataFrame
         col: str
         save_path: str
-    
+
     Return:
         None
     '''
@@ -45,7 +45,7 @@ def monthlyincome_to_col(df:pd.DataFrame, col:str, save_path:str='plot'):
         df: pd.DataFrame
         col: str
         save_path: str
-    
+
     Return:
         None
     '''
@@ -55,8 +55,8 @@ def monthlyincome_to_col(df:pd.DataFrame, col:str, save_path:str='plot'):
     pathlib.Path(save_path).mkdir(parents=True, exist_ok=True)
 
     fig, ax = plt.subplots(figsize=(12,7), nrows=1, ncols=2)
-    df_attrited = df.loc[df['Attrition'] == 'Yes']
-    df_remained = df.loc[df['Attrition'] == 'No']
+    df_attrited = df.loc[df['Attrition'] == 1]
+    df_remained = df.loc[df['Attrition'] == 0]
 
     ax[0].scatter(data=df_attrited, x=col, y='MonthlyIncome', c='MonthlyIncome', cmap='winter')
     ax[0].set(title='MonthlyIncome by {}'.format(col), xlabel=col, ylabel='MonthlyIncome')
@@ -91,8 +91,8 @@ def overtime_and_marital_status_to_attrition(df:pd.DataFrame, save_path:str):
     df = df.filter(['OverTime','Attrition','MaritalStatus'], axis=1)
     for status in ["All", "Single","Married","Divorced"]:
         temp_df = df[df["MaritalStatus"]==status] if status != "All" else df
-        overtime_df = temp_df[temp_df['OverTime'] =='Yes']
-        normal_df = temp_df[temp_df['OverTime'] == 'No']
+        overtime_df = temp_df[temp_df['OverTime'] ==1]
+        normal_df = temp_df[temp_df['OverTime'] == 0]
         fig, ax = plt.subplots(1,2, figsize = (16,4))
 
         normal_df['Attrition'].value_counts().plot.pie(figsize=(7, 5), colors = ['steelblue','red'], autopct='%.2f%%', rot=0, ax = ax[0], title = status+": Works Normal Hours")
@@ -101,13 +101,5 @@ def overtime_and_marital_status_to_attrition(df:pd.DataFrame, save_path:str):
 
 def gender_analysis(df:pd.DataFrame, save_path, str):
     '''
-    
+
     '''
-
-if __name__ == '__main__':
-    df = pd.read_csv('../data/preprocessed/HR_Employee_Attrition.csv')
-    distribution_to_attition('Age')
-    distribution_to_attition('MonthlyIncome')
-    distribution_to_attition('DistanceFromHome')
-
-    
