@@ -25,7 +25,7 @@ def preprocess_df(rawpath:str='../data/raw/HR_Employee_Attrition.csv',outpath:st
             "Travel_Rarely":0,
             "Travel_Frequently":1
         },
-        "Overtime": {
+        "OverTime": {
             'Yes':1,
             'No':0
         },
