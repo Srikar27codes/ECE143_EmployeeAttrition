@@ -5,7 +5,7 @@ from scipy import stats
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-def distribution_to_attition(df:pd.DataFrame, col:str, save_path:str='../plot'):
+def distribution_to_attition(df:pd.DataFrame, col:str, save_path:str='plot'):
     '''
     Split the group into two groups(attrit  ed or not) and plot their distribution for given col
 
@@ -36,7 +36,7 @@ def distribution_to_attition(df:pd.DataFrame, col:str, save_path:str='../plot'):
     ax.spines['top'].set_visible(False)
     fig.savefig(save_path + '/'+col+'_distribution_to_attrition.png', dpi=fig.dpi)
 
-def monthlyincome_to_totalworkingyears(df:pd.DataFrame, save_path:str='../plot'):
+def monthlyincome_to_totalworkingyears(df:pd.DataFrame, save_path:str='plot'):
     '''
     First we divide the dataframe into those who attrited from the company and those who do not.
     Then we plot their age vs their monthly income and compute the regression line for these two groups and compare their difference
@@ -72,7 +72,7 @@ def monthlyincome_to_totalworkingyears(df:pd.DataFrame, save_path:str='../plot')
 
     fig.savefig(save_path + '/monthlyincome_to_totalworkingyears.png', dpi=fig.dpi)
 
-def overtime_and_marital_status_to_attrition(df:pd.DataFrame, save_path:str='../plot'):
+def overtime_and_marital_status_to_attrition(df:pd.DataFrame, save_path:str='plot'):
     '''
     Plot the overtime to attrition rate for different marital status(all, single, married, divorced)
 
@@ -112,7 +112,7 @@ def overtime_and_marital_status_to_attrition(df:pd.DataFrame, save_path:str='../
 
 
 
-def gender_analysis(df:pd.DataFrame, save_path:str='../plot'):
+def gender_analysis(df:pd.DataFrame, save_path:str='plot'):
     '''
     For different gender, we split them into lower age bracket(<35) and higher(>=35) one. Then compare the difference between male and female
 

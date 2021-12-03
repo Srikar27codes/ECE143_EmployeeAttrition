@@ -33,4 +33,4 @@ def ttest(df):
     df_pval=pd.DataFrame(p_vals,index=['p_value']).T
     df_pval_reject=df_pval.loc[df_pval['p_value']<=0.05]
 
-    df_pval_reject.to_csv('../data/ttest/ttest_outcome.csv')
+    df_pval_reject.to_csv('data/ttest/ttest_outcome.csv')
