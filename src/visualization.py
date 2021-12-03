@@ -5,7 +5,7 @@ from scipy import stats
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-def distribution_to_attition(df:pd.DataFrame, col:str, save_path:str='plot'):
+def distribution_to_attition(df:pd.DataFrame, col:str, save_path:str='../plot'):
     '''
     Split the group into two groups(attrit  ed or not) and plot their distribution for given col
 
@@ -34,9 +34,9 @@ def distribution_to_attition(df:pd.DataFrame, col:str, save_path:str='plot'):
     ax.legend()
     ax.spines['right'].set_visible(False)
     ax.spines['top'].set_visible(False)
-    fig.savefig(save_path + '/totalworkingyears_distribution_to_attrition.png', dpi=fig.dpi)
+    fig.savefig(save_path + '/'+col+'_distribution_to_attrition.png', dpi=fig.dpi)
 
-def monthlyincome_to_totalworkingyears(df:pd.DataFrame, save_path:str='plot'):
+def monthlyincome_to_totalworkingyears(df:pd.DataFrame, save_path:str='../plot'):
     '''
     First we divide the dataframe into those who attrited from the company and those who do not.
     Then we plot their age vs their monthly income and compute the regression line for these two groups and compare their difference
@@ -72,7 +72,7 @@ def monthlyincome_to_totalworkingyears(df:pd.DataFrame, save_path:str='plot'):
 
     fig.savefig(save_path + '/monthlyincome_to_totalworkingyears.png', dpi=fig.dpi)
 
-def overtime_and_marital_status_to_attrition(df:pd.DataFrame, save_path:str='plot'):
+def overtime_and_marital_status_to_attrition(df:pd.DataFrame, save_path:str='../plot'):
     '''
     Plot the overtime to attrition rate for different marital status(all, single, married, divorced)
 
@@ -112,7 +112,7 @@ def overtime_and_marital_status_to_attrition(df:pd.DataFrame, save_path:str='plo
 
 
 
-def gender_analysis(df:pd.DataFrame, save_path:str='plot'):
+def gender_analysis(df:pd.DataFrame, save_path:str='../plot'):
     '''
     For different gender, we split them into lower age bracket(<35) and higher(>=35) one. Then compare the difference between male and female
 
@@ -129,13 +129,13 @@ def gender_analysis(df:pd.DataFrame, save_path:str='plot'):
 
     df = df[['Age', 'Gender', 'Attrition']]
     explode = (0,0.1)
-    fhbcolors = [sns.color_palette('pastel')[0], sns.color_palette('pastel')[3]] 
-    mhbcolors = [sns.color_palette('pastel')[0], sns.color_palette('pastel')[3]] 
+    fhbcolors = [sns.color_palette('pastel')[0], sns.color_palette('pastel')[3]]
+    mhbcolors = [sns.color_palette('pastel')[0], sns.color_palette('pastel')[3]]
 
     for gender in ['Male', 'Female']:
         higherAgeBracket = df[(df['Age'] >= 35) & (df['Gender'] == gender)]
         lowerAgeBracket  = df[(df['Age'] < 35)  & (df['Gender'] == gender)]
-    
+
         fig, ax = plt.subplots(1,2, figsize = (16,5))
         higherAgeBracket['Attrition'].value_counts().plot.pie(figsize=(9, 5),
                                                                 colors = fhbcolors,
@@ -159,4 +159,3 @@ if __name__ == '__main__':
     monthlyincome_to_totalworkingyears(df)
     overtime_and_marital_status_to_attrition(df)
     gender_analysis(df)
-    
