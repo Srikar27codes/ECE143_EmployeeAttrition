@@ -2,7 +2,7 @@
 # load raw dataset and preprocess it several subsets for further analysis
 
 import pandas as pd
-def preprocess_df(rawpath:str='../data/raw/HR_Employee_Attrition.csv',outpath:str='../data/preprocessed/'):
+def preprocess_df(rawpath:str='data/raw/HR_Employee_Attrition.csv',outpath:str='data/preprocessed/'):
     '''
     Take the raw dataset and preprocess it into several datasets for future gender_analysis
 
@@ -25,7 +25,7 @@ def preprocess_df(rawpath:str='../data/raw/HR_Employee_Attrition.csv',outpath:st
             "Travel_Rarely":0,
             "Travel_Frequently":1
         },
-        "Overtime": {
+        "OverTime": {
             'Yes':1,
             'No':0
         },
